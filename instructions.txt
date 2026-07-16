@@ -1,0 +1,115 @@
+Configure Git with username and email
+
+git config --global user.name "Osama Mobeen"
+git config --global user.email osamamughal23@gmail.com
+
+git config --list
+
+git init (this will create empty git repo)
+ls -la (chech .git file)
+
+git status
+
+git add *  (for uploading all files in the folder)
+git add index.html
+
+git commit -m "First v1 of index.html"
+git branch (main branch always master)
+
+git log (check status /commits/date/message)
+
+git diff (any change / modification)
+
+To access previous version type git log and copy commit id:
+this is to access the single file
+git show 3cb31f9544434ec90162ef35e64cd06268399699:index.html
+
+to access all the files in the particular version like 1.0
+git checkout 3cb31f9544434ec90162ef35e64cd06268399699 -- *
+
+after reviewing the previous version this command will take us to the latest files and code will be changed
+git checkout master --*
+
+Negative cases
+Case 1:
+
+if we accidentaly type wrong code n we wanna go back to previous version simply wll use
+git restore index.html (for specific file)
+git restore . (for multiple files)
+
+Case 2:
+if we add the wrong file using git add (in this stage file will go from working directory to staging area), to revert this type of error wll type
+
+git restore --staged .
+
+and will will go back to working directory
+
+git restore .
+
+Case 3
+if we added changes to staging area by git add (no commit) and added more changes to file then
+git restore --worktree .\index.html
+
+Case 4
+if we did commit also wrong files
+git reset --soft HEAD^ (uncommit and code remains same)
+git reset --hard HEAD^ (uncommit and code also return to previous)
+
+Logging in Git
+useful log options
+to see the last commit and difference
+git log -p -1 (final commit)
+git log -p -2 (last 2 commit)
+
+git log --stat (this show summary of changes)
+
+git log --pretty=oneline (this will show every commit in oneline)
+git log --pretty=format:"%h - %an, %ar:%s"
+(h = hash, a = author name, ar= related to, s=string)
+git log -S "h1" (information related to specific tag  code)
+
+git log --grep="fix bug" (search commit message)
+
+git log --since="2025-01-01"
+git log --until="2025-01-01"
+
+git log --author="Paul"
+git log --no-merges
+
+Push existing repo from the command line
+git remote add origin https://github.com/osamamobeen1/localrepo.git
+git branch -M main
+git push -u origin main
+
+to make changes in the GitHub
+we will push the code using 
+git push
+ 
+to check remote repo linked or not use
+git remote
+git remote -v
+
+GIT Pull
+if we make a file in remote repo and we want to see it in local repo 
+git pull
+
+git clone <repolink>  (user can see all the commits and history also by git pull user can access the latest version)
+
+Git Branch and Merge
+git branch (check branches)
+git branch new_branch_name - git branch design
+git checkout design (switch to design branch)
+
+the files in these two branches are totally different 
+to merge them we need to go back to main branch
+git checkout main
+git merge design
+
+to push another branch like design, shift to design branch make changes, git add, git commit for pushing we need to specify the origin like
+git push origin design (because remote repo is not aware of the new branch)
+
+
+Merge conflict
+if there are chenges in two branches at the same time and we want to merge the files there will be a conflict whether you choose the latest file or the second branch files
+to fix there is an option in vs code editor that is fix the merge conflict in the editor.
+
